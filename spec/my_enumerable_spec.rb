@@ -47,5 +47,11 @@ describe "MyEnumerable module contains my Enumerable methods" do
     expect(MyCollection.new(1..5).min).to eq 1
     expect(MyCollection.new([3, 1, 6, 9]).min).to eq 1
     expect(MyCollection.new([]).min).to eq nil
-  end     
+  end
+
+  specify "#include? returns true if specific element is in collection or false if not" do
+    expect(MyCollection.new(1...5).include?(5)).to eq false
+    expect(MyCollection.new([3, 1, 6, 9]).include?(6)).to eq true
+    expect(MyCollection.new([]).include?(5)).to eq false
+  end       
 end
