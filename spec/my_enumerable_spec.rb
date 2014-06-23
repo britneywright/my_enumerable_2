@@ -41,5 +41,11 @@ describe "MyEnumerable module contains my Enumerable methods" do
     expect(MyCollection.new(1..5).first).to eq 1
     expect(MyCollection.new([3, 1, 6, 9]).first).to eq 3
     expect(MyCollection.new([]).first).to eq nil
-  end   
+  end
+
+  specify "#min returns the smallest element of the collection" do
+    expect(MyCollection.new(1..5).min).to eq 1
+    expect(MyCollection.new([3, 1, 6, 9]).min).to eq 1
+    expect(MyCollection.new([]).min).to eq nil
+  end     
 end
