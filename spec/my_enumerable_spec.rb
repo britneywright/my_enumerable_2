@@ -36,4 +36,10 @@ describe "MyEnumerable module contains my Enumerable methods" do
     expect(MyCollection.new([3, 1, 6, 9]).map {|element| element * 3 }).to eq [9, 3, 18, 27]
     expect(MyCollection.new([]).map {|element| element * 2 }).to eq []
   end
+
+  specify "#first returns the first element of the collection" do
+    expect(MyCollection.new(1..5).first).to eq 1
+    expect(MyCollection.new([3, 1, 6, 9]).first).to eq 3
+    expect(MyCollection.new([]).first).to eq nil
+  end   
 end
