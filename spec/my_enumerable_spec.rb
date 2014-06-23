@@ -32,7 +32,7 @@ describe "MyEnumerable module contains my Enumerable methods" do
   end  
 
   specify "#map returns new collection of elements transformed after passing into block" do
-    expect(MyCollection.new(1...5).map {|element| element + 3}).to eq [3, 4, 5, 6, 7]
+    expect(MyCollection.new(1...5).map {|element| element + 3}).to eq [4, 5, 6, 7]
     expect(MyCollection.new([3, 1, 6, 9]).map {|element| element * 3 }).to eq [9, 3, 18, 27]
     expect(MyCollection.new([]).map {|element| element * 2 }).to eq []
   end
