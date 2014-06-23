@@ -19,7 +19,7 @@ describe "MyEnumerable module contains my Enumerable methods" do
   end
 
   specify "#find returns the first element of the collection which makes the block truthy" do
-    expect(MyCollection.new(1, 4, 2, 9).find {|element| element + 2 > 5}).to eq 4
+    expect(MyCollection.new([1, 4, 2, 9]).find {|element| element + 2 > 5}).to eq 4
     expect(MyCollection.new(1..5).find {|element| element < 3}).to eq 1
     expect(MyCollection.new([]).find {|element| element * 2}).to eq nil
   end
