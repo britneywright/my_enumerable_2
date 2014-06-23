@@ -48,4 +48,13 @@ module MyEnumerable
     end
     smallest
   end
+
+  def include?(target)
+    self.each do |element|
+      if element == target
+        return true
+      end
+    end
+    return false
+  end
 end
