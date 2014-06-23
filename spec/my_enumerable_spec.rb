@@ -53,5 +53,12 @@ describe "MyEnumerable module contains my Enumerable methods" do
     expect(MyCollection.new(1...5).include?(5)).to eq false
     expect(MyCollection.new([3, 1, 6, 9]).include?(6)).to eq true
     expect(MyCollection.new([]).include?(5)).to eq false
-  end       
+  end
+
+  specify "#min_by returns the first element with the smallest value to make the block truthy" do
+    expect(MyCollection.new(1...5).min_by{|element| element}).to eq 1
+    expect(MyCollection.new([[3, 1], [1, 5], [6, 9]]).min_by{|element| element[0]}).to eq [1, 5]
+    expect(MyCollection.new(["frog", "spinach", "sun", "mud"]).min_by{|element| element.length}).to eq "sun"
+    expect(MyCollection.new([])).min_by{|element| element}.to eq nil
+  end         
 end
