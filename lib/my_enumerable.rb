@@ -38,4 +38,14 @@ module MyEnumerable
     end
     return nil
   end
+
+  def min
+    smallest = self.first
+    self.each do |element|
+      if element < smallest
+        smallest = element
+      end
+    end
+    smallest
+  end
 end
