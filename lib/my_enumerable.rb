@@ -57,4 +57,16 @@ module MyEnumerable
     end
     return false
   end
+
+  def min_by
+    smallest = yield(self.first)
+    value = self.first
+    self.each do |element|
+      if yield(element) < smallest
+        smallest = yield(element)
+        value = element
+      end
+    end
+    value
+  end
 end
