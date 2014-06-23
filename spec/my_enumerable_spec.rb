@@ -23,4 +23,11 @@ describe "MyEnumerable module contains my Enumerable methods" do
     expect(MyCollection.new(1..5).find {|element| element < 3}).to eq 1
     expect(MyCollection.new([]).find {|element| element * 2}).to eq nil
   end
+
+  specify "#select returns new collection of requested elements from collection" do
+    expect(MyCollection.new(1..5).select {|element| element < 3}).to eq [1, 2]
+    expect(MyCollection.new([3, 1, 6, 9]).select {|element| element % 3 == 0}).to eq [3, 6, 9]
+    expect(MyCollection.new([]).select {|element| element }).to eq []
+    expect(MyCollection.new(1...5).select {|element| element >= 5}).to eq []
+  end  
 end
