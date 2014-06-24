@@ -78,4 +78,16 @@ module MyEnumerable
     end
     return true
   end
+
+  def take(target)
+    ary = []
+    count = 0
+    self.each do |element|
+      count += 1
+      if count <= target
+        ary << element
+      end
+    end
+    ary
+  end
 end
