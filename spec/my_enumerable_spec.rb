@@ -80,4 +80,12 @@ describe "MyEnumerable module contains my Enumerable methods" do
     expect(MyCollection.new([]).any?{|element| element > 4 }).to eq false
     expect(MyCollection.new([]).any?).to eq false
   end            
+
+  specify "#none? returns true if the block never returns true" do
+    expect(MyCollection.new(1...5).none?{|element| element < 5}).to eq false
+    expect(MyCollection.new(1...5).none?{|element| element > 5}).to eq true
+    expect(MyCollection.new([3, 1, 6, 9]).none?).to eq false
+    expect(MyCollection.new([]).none?{|element| element > 4 }).to eq true
+    expect(MyCollection.new([]).none?).to eq true
+  end 
 end
