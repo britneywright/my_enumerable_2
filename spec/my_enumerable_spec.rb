@@ -72,5 +72,12 @@ describe "MyEnumerable module contains my Enumerable methods" do
     expect(MyCollection.new([3, 1, 6, 9]).take(3)).to eq [3, 1, 6]
     expect(MyCollection.new(1...5).take(5)).to eq [1, 2, 3, 4]
     expect(MyCollection.new([]).take(5)).to eq []
-  end          
+  end
+
+  specify "#any? returns true if one instance of an element doesn't return false or nil" do
+    expect(MyCollection.new(1...5).any?{|element| element < 5}).to eq true
+    expect(MyCollection.new([3, 1, 6, 9]).any?).to eq true
+    expect(MyCollection.new([]).any?{|element| element > 4 }).to eq false
+    expect(MyCollection.new([]).any?).to eq false
+  end            
 end
