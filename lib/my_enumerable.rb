@@ -15,13 +15,13 @@ module MyEnumerable
   end
 
   def select
-    ary = []                # => []
-    self.each do |element|  # => #<MyCollection:0x00000101972ca8 @collection=[3, 4, 5]>
-      if yield(element)     # => 3, 4, 5
-        ary << element      # => [3], [3, 4], [3, 4, 5]
-      end                   # => [3], [3, 4], [3, 4, 5]
-    end                     # => [3, 4, 5]
-    ary                     # => [3, 4, 5]
+    ary = []
+    self.each do |element|
+      if yield(element)
+        ary << element
+      end
+    end
+    ary
   end
 
   def map
@@ -72,7 +72,11 @@ module MyEnumerable
 
   def all?
     self.each do |element|
-      unless yield(element)
+      if block_given?
+        unless yield(element)
+          return false
+        end
+      elsif self.include?(false)
         return false
       end 
     end
@@ -92,14 +96,14 @@ module MyEnumerable
   end
 
   def any?
-    if block_given?                                 # => false
+    if block_given?
       self.each do |element|
         if yield(element)
           return true
         end
       end
-    elsif self.select{|element| element}.count > 0  # => true
-      return true                                   # => true
+    elsif self.select{|element| element}.count > 0
+      return true
     end
     return false
   end
@@ -119,12 +123,12 @@ module MyEnumerable
 end
 
 class MyCollection
-  include MyEnumerable        # => MyCollection
+  include MyEnumerable
   def initialize(collection)
-    @collection = collection  # => [3, 4, 5]
+    @collection = collection
   end
 
   def each
-    @collection.each {|element| yield element}  # => [3, 4, 5]
+    @collection.each {|element| yield element}
   end
 end
