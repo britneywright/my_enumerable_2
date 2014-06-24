@@ -69,4 +69,13 @@ module MyEnumerable
     end
     value
   end
+
+  def all?
+    self.each do |element|
+      unless yield(element)
+        return false
+      end 
+    end
+    return true
+  end
 end

@@ -65,6 +65,6 @@ describe "MyEnumerable module contains my Enumerable methods" do
   specify "#all? returns true if all elements in collection make block truthy otherwise returns false" do
     expect(MyCollection.new(1...5).all?{|element| element < 5}).to eq true
     expect(MyCollection.new([3, 1, 6, 9]).all?{|element| element % 3 == 0}).to eq false
-    expect(MyCollection.new([]).all?{|element| element > 4 }).to eq false
+    expect(MyCollection.new([]).all?{|element| element > 4 }).to eq true
   end        
 end
