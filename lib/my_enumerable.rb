@@ -103,35 +103,15 @@ module MyEnumerable
   end
 
   def none?
-    if block_given?                            # => false
+    if block_given?
       self.each do |element|
         if yield(element)
           return false
         end
       end
-      return true
-    else
-      self.each do |element|                   # => #<MyCollection:0x000001012569d8 @collection=[3, 1, 6, 9]>
-        if element == nil || element == false  # => false
-          return true
-        else
-          return false                         # => false
-        end
-      end
+    elsif self.select{|element| element}.count > 0
+      return false
     end
     return true
   end
 end
-
-class MyCollection
-  include MyEnumerable        # => MyCollection
-  def initialize(collection)
-    @collection = collection  # => [3, 1, 6, 9]
-  end
-
-  def each
-    @collection.each {|element| yield element}
-  end
-end
-  
-MyCollection.new([3, 1, 6, 9]).none?            # => false
