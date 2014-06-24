@@ -90,4 +90,15 @@ module MyEnumerable
     end
     ary
   end
+
+  def any?
+    self.each do |element|
+      if block_given? && yield(element)
+        return true
+      elsif self.count > 1
+        return true
+      end  
+    end
+    return false
+  end
 end
