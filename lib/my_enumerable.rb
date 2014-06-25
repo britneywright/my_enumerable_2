@@ -50,9 +50,9 @@ module MyEnumerable
   end
 
   def include?(target)
-    self.each do |element|
-      if element == target
-        return true
+    self.each do |element|  # => #<MyCollection:0x000001018ee8e0 @collection=[false]>
+      if element == target  # => true
+        return true         # => true
       end
     end
     return false
@@ -71,13 +71,13 @@ module MyEnumerable
   end
 
   def all?
-    self.each do |element|
-      if block_given?
+    self.each do |element|        # => #<MyCollection:0x000001018ee8e0 @collection=[false]>
+      if block_given?             # => false
         unless yield(element)
           return false
         end
-      elsif self.include?(false)
-        return false
+      elsif self.include?(false)  # => true
+        return false              # => false
       end 
     end
     return true
@@ -119,16 +119,5 @@ module MyEnumerable
       return false
     end
     return true
-  end
-end
-
-class MyCollection
-  include MyEnumerable
-  def initialize(collection)
-    @collection = collection
-  end
-
-  def each
-    @collection.each {|element| yield element}
   end
 end
