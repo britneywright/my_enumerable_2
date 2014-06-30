@@ -109,15 +109,7 @@ module MyEnumerable
   end
 
   def none?
-    if block_given?
-      self.each do |element|
-        if yield(element)
-          return false
-        end
-      end
-    elsif self.select{|element| element}.count > 0
-      return false
-    end
-    return true
+    return !find { |e| e } unless block_given?
+    !find { |e| yield(e) }
   end
 end
