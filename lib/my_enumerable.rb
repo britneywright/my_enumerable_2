@@ -108,8 +108,8 @@ module MyEnumerable
     return false
   end
 
-  def none?
-    return !find { |e| e } unless block_given?
-    !find { |e| yield(e) }
+  def none?(&block)
+    block ||= lambda { |e| e}
+    !find(&block)
   end
 end
