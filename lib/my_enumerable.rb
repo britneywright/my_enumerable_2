@@ -87,7 +87,7 @@ module MyEnumerable
     ary
   end
 
-  def any?
+  def any?(&block)
     block ||= lambda {|e| e}
     !!find(&block)
   end
