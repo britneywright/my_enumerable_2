@@ -70,12 +70,16 @@ module MyEnumerable
     value
   end
 
+
   def all?
-    return !select {|e| e } unless block_given?
     self.each do |element|
-      if !yield(element)
+      if block_given?
+        unless yield(element)
+           return false
+        end
+      elsif self.include?(false)
         return false
-      end
+      end 
     end
     return true
   end
