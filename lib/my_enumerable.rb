@@ -70,9 +70,14 @@ module MyEnumerable
     value
   end
 
-  def all?(&block)
-    return !select { |e| e } unless block
-    !find { |e| !yield(e) } 
+  def all?
+    return !select {|e| e } unless block_given?
+    self.each do |element|
+      if !yield(element)
+        return false
+      end
+    end
+    return true
   end
 
   def take(target)
