@@ -68,6 +68,7 @@ describe "MyEnumerable module contains my Enumerable methods" do
     expect(MyCollection.new([]).all?{|element| element > 4 }).to eq true
     expect(MyCollection.new([false]).all?).to eq false
     expect(MyCollection.new([2, 3, false]).all?).to eq false
+    expect(MyCollection.new([2, 3, 5]).all?).to eq true
   end
 
   specify "#take returns a new collection of the first specified number of elements of the collection" do
