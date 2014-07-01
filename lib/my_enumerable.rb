@@ -89,7 +89,7 @@ module MyEnumerable
 
   def any?
     block ||= lambda {|e| e}
-    find(&block) ? true : false
+    !!find(&block)
   end
 
   def none?(&block)
