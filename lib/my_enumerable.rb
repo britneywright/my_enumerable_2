@@ -72,7 +72,7 @@ module MyEnumerable
 
   def all?(&block)
     block ||= lambda {|e| e }
-    self == self.select(&block)
+    self.map { |e| e } == self.select(&block)
   end
 
   def take(target)
